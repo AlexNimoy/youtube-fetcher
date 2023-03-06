@@ -20,7 +20,7 @@ RSpec.describe Video, type: :model do
   describe '#channel' do
     let(:episode) { create(:audio_episode) }
     it 'returns podcast' do
-      expect(subject.channel).to eq(episode.podcast.origin_id)
+      expect(subject.channel).to eq(episode.podcast)
     end
   end
 

@@ -1,10 +1,11 @@
 class Video
   attr_reader :origin_id
+
   delegate :id, :title, :description, :mime_type, :url, :size, to: :episode
   delegate :url, :size, to: :audio_episode, allow_nil: true, prefix: :audio
   delegate :size, to: :video_episode, allow_nil: true, prefix: :video
 
-  def initialize(origin_id, episode=nil)
+  def initialize(origin_id, episode = nil)
     @origin_id = origin_id
     @episode = episode
   end
@@ -40,15 +41,14 @@ class Video
   private
 
   def audio_episode
-    AudioEpisode.find_by(origin_id: origin_id)
+    AudioEpisode.find_by(origin_id:)
   end
 
   def video_episode
-    VideoEpisode.find_by(origin_id: origin_id)
+    VideoEpisode.find_by(origin_id:)
   end
 
   def episode
-    @episode ||= Episode.find_by(origin_id: origin_id)
+    @episode ||= Episode.find_by(origin_id:)
   end
-
 end
