@@ -1,5 +1,5 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :pending_episode do
-    origin_id "MyString"
+    origin_id { 'MyString' }
   end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Podcast, type: :model do
-  let(:podcast) { FactoryGirl.create :podcast }
+  let(:podcast) { create(:podcast) }
 
   describe '#episodes_per_week' do
     subject { podcast.episodes_per_week }
@@ -11,19 +11,13 @@ RSpec.describe Podcast, type: :model do
     end
 
     context do
-      before do
-        FactoryGirl.create :episode, podcast: podcast, published_at: 1.day.ago
-      end
-
+      let!(:episode) { create(:episode, podcast:, published_at: 1.day.ago) }
       it { is_expected.to eq 1 }
     end
 
     context do
-      before do
-        FactoryGirl.create :episode, podcast: podcast, published_at: 2.days.ago
-        FactoryGirl.create :episode, podcast: podcast, published_at: 1.day.ago
-      end
-
+      let!(:two_days_old_episode) { create(:episode, podcast:, published_at: 2.days.ago) }
+      let!(:one_day_old_episode) { create(:episode, podcast:, published_at: 1.days.ago) }
       it { is_expected.to eq 2 }
     end
   end

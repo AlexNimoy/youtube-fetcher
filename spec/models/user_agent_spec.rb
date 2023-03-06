@@ -7,18 +7,18 @@ RSpec.describe UserAgent, type: :model do
     end
 
     context 'when cookies is blank' do
-      let!(:user_agent) { FactoryGirl.create :user_agent, cookies: nil }
+      let!(:user_agent) { create(:user_agent, cookies: nil) }
 
       it 'should not be exists' do
-        expect(File.exists?(user_agent.cookies_jar.path)).to eq false
+        expect(File.exist?(user_agent.cookies_jar.path)).to eq false
       end
     end
 
     context 'when cookies is present' do
-      let!(:user_agent) { FactoryGirl.create :user_agent, cookies: 'some cookie content' }
+      let!(:user_agent) { create(:user_agent, cookies: 'some cookie content') }
 
       it 'should be exists' do
-        expect(File.exists?(user_agent.cookies_jar.path)).to eq true
+        expect(File.exist?(user_agent.cookies_jar.path)).to eq true
       end
     end
   end

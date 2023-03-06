@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UpdateAllPodcastsJob, type: :job do
-  let!(:podcast) { FactoryGirl.create :podcast, fetched_at: 2.hours.ago }
+  let!(:podcast) { create(:podcast, fetched_at: 2.hours.ago) }
 
   it 'should work' do
     UpdateAllPodcastsJob.new.perform

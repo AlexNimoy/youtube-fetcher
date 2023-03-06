@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Search", type: :feature do
   scenario 'Type query and sea results' do
-    podcast = FactoryGirl.create :podcast, title: 'Peter Episode'
-    episode = FactoryGirl.create :episode, title: 'Moscow Episode'
+    podcast = create :podcast, title: 'Peter Episode'
+    episode = create :episode, title: 'Moscow Episode'
 
     visit '/'
     

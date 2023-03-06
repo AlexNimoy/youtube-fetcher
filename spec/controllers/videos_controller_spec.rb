@@ -4,7 +4,7 @@ RSpec.describe VideosController, type: :controller do
   render_views
 
   describe "GET #show" do
-    let!(:episode) { FactoryGirl.create :episode }
+    let!(:episode) { create :episode }
 
     it "returns http success" do
       get :show, params: { id: episode.origin_id }
@@ -13,7 +13,7 @@ RSpec.describe VideosController, type: :controller do
   end
 
   describe "GET #index" do
-    let!(:episode) { FactoryGirl.create :episode }
+    let!(:episode) { create :episode }
 
     it "returns http success" do
       get :index

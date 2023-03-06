@@ -4,7 +4,7 @@ RSpec.describe UserAgentsPool do
   before { UserAgent.delete_all }
   describe '.with_user_agent' do
     context 'a single user exists' do
-      let!(:user_agent) { FactoryGirl.create :user_agent }
+      let!(:user_agent) { create(:user_agent) }
 
       it 'should get free user' do
         described_class.with_user_agent do |ua|
@@ -20,7 +20,7 @@ RSpec.describe UserAgentsPool do
     end
 
     context 'when user_agent is used recently' do
-      let!(:user_agent) { FactoryGirl.create :user_agent, last_pageview_at: 5.seconds.ago }
+      let!(:user_agent) { create(:user_agent, last_pageview_at: 5.seconds.ago) }
 
       it 'should raise error' do
         expect do
@@ -30,8 +30,8 @@ RSpec.describe UserAgentsPool do
     end
 
     context 'has 2 users' do
-      let!(:user_agent_1_hour_ago) { FactoryGirl.create :user_agent, last_pageview_at: 1.hour.ago }
-      let!(:user_agent_2_hours_ago) { FactoryGirl.create :user_agent, last_pageview_at: 2.hour.ago }
+      let!(:user_agent_1_hour_ago) { create(:user_agent, last_pageview_at: 1.hour.ago) }
+      let!(:user_agent_2_hours_ago) { create(:user_agent, last_pageview_at: 2.hour.ago) }
 
       it 'should get user having longer idle time' do
         described_class.with_user_agent do |ua|

@@ -61,6 +61,7 @@ class FetchVideoEpisodeJob < FetchAudioEpisodeJob
 
   def fetch_media
     return if @fetcher.nil?
+    
     @media_url ||= @fetcher.fetch(@youtube_video_id)
   end
 

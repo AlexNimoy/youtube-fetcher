@@ -1,8 +1,8 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :feedback do
-    email "foo@example.com"
-    title "MyString"
-    body "MyText"
-    category "common"
+    email { 'foo@example.com' }
+    title { 'MyString' }
+    body { 'MyText' }
+    category { 'common' }
   end
 end
